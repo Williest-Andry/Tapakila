@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Admin, Resource } from 'react-admin';
+import localStorageDataProvider from 'ra-data-local-storage';
+import { EventList } from './Events/EventLists';
+import { EventCreate } from './Events/EventCreate';
+import { EventEdit } from './Events/EventUpdate';
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+export interface Event {
+  id: number;
+  title: string;
+  date: string;
+  status: 'draft' | 'published' | 'canceled';
 }
 
-export default App
+
+const dataProvider = localStorageDataProvider({
+  defaultData: {
+    events: [
+      { id: 1, title: 'Conférence React', date: '2025-04-01', status: 'published' },
+      { id: 2, title: 'Atelier UX Design', date: '2025-04-10', status: 'draft' },
+    ] as Event[],
+  },
+});
+
+const App = () => (
+  <Admin dataProvider={dataProvider}>
+    <Resource name="events" list={EventList} create={EventCreate} edit={EventEdit} />
+  </Admin>
+);
+
+export default App;
