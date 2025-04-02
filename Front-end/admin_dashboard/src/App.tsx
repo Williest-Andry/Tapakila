@@ -1,8 +1,8 @@
 // App.tsx
 import { Admin, Resource, radiantLightTheme, radiantDarkTheme } from 'react-admin';
-import { EventList } from './events/EventLists';
+import { EventList } from './events/EventList';
 import { EventCreate } from './events/EventCreate';
-import { EventEdit } from './events/EventUpdate';
+import { EventEdit } from './events/EventEdit';
 import { dataProvider } from './dataProvider';
 import { Layout } from 'react-admin';
 import { ReactNode } from 'react';

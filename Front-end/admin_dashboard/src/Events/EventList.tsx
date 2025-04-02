@@ -4,6 +4,8 @@ const EventList = () => (
   <List>
     <Datagrid rowClick="edit">
       <TextField source="id" />
+      <TextField source="organizer" />
+      <TextField source="description" />
       <ImageField source="image" title="title" />
       <TextField source="title" />
       <DateField source="dateTime" showTime />
