@@ -7,14 +7,16 @@ import { dataProvider } from './Events/DataProvider';
 import { Layout } from 'react-admin';
 import { ReactNode } from 'react';
 import './App.css';
+import UserList from './user/user-list';
+import mydataProvider from './data-provider';
 
 const CustomLayout = (props: { children: ReactNode }) => (
   <Layout {...props} className="custom-layout" />
 );
 
 const App = () => (
-  <Admin 
-    dataProvider={dataProvider} 
+  <Admin
+    dataProvider={mydataProvider}
     layout={CustomLayout}
     theme={radiantLightTheme}
     darkTheme={radiantDarkTheme}
@@ -25,6 +27,11 @@ const App = () => (
       create={EventCreate}
       edit={EventEdit}
       options={{ label: "Events" }}
+    />
+
+    <Resource
+      name="users"
+      list={UserList}
     />
   </Admin>
 );
