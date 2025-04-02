@@ -4,7 +4,7 @@ const apiUrl = "http://localhost:3001";
 const httpClient = fetchUtils.fetchJson;
 
 const dataProvider: DataProvider = {
-  getList: async (resource, params) => {
+  getList: async (resource) => {
     const url = `${apiUrl}/${resource}`;
     const { json } = await httpClient(url);
     return { data: json, total: json.length };
