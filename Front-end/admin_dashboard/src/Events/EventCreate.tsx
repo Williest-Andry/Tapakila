@@ -3,6 +3,7 @@ import { Create, SimpleForm, TextInput, DateTimeInput, NumberInput } from "react
 const EventCreate = () => (
   <Create>
     <SimpleForm>
+    <TextInput source="id" />
       <TextInput source="title" />
       <TextInput source="organizer" />
       <TextInput source="description" multiline />
