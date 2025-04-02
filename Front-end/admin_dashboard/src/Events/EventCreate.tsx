@@ -4,6 +4,8 @@ const EventCreate = () => (
   <Create>
     <SimpleForm>
       <TextInput source="title" />
+      <TextInput source="organizer" />
+      <TextInput source="description" multiline />
       <TextInput source="image" />
       <DateTimeInput source="dateTime" />
       <TextInput source="location" />

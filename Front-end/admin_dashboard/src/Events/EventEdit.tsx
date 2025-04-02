@@ -1,13 +1,13 @@
-import { Edit, SimpleForm, TextInput, DateTimeInput, NumberInput, ImageInput, ImageField } from "react-admin";
+import { Edit, SimpleForm, TextInput, DateTimeInput, NumberInput } from "react-admin";
 
 const EventEdit = () => (
   <Edit>
     <SimpleForm>
       <TextInput source="id" disabled />
       <TextInput source="title" />
-      <ImageInput source="image" accept="image/*">
-        <ImageField source="src" title="title" />
-      </ImageInput>
+      <TextInput source="organizer" />
+      <TextInput source="description" multiline />
+      <TextInput source="image" />
       <DateTimeInput source="dateTime" />
       <TextInput source="location" />
       <TextInput source="category" />
