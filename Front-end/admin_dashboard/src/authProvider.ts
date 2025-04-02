@@ -1,44 +1,49 @@
 import { AuthProvider } from "react-admin";
 
-const API_URL = "https://localhost:3001";
+const API_URL = "http://localhost:3001";
 
 const authProvider: AuthProvider = {
-  login: async ({ username, password }) => {
-    const request = new Request(`${API_URL}/auth/login`, {
+  login: async (params: any) => {
+    const { email, password } = params;
+    const request = new Request(`${API_URL}/users/login`, {
       method: "POST",
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
     });
 
-    const response = await fetch(request);
-    if (!response.ok) {
-      throw new Error("Invalid credentials");
+    let response;
+    try {
+      response = await fetch(request);
+      if (!response.ok) {
+        throw new Error("Invalid credentials");
+      }
+      const finalResponse = await response.json();
+      localStorage.setItem("authToken", finalResponse.finalUser.authToken);
+      return Promise.resolve();
     }
-
-    const { auth_token } = await response.json();
-    localStorage.setItem("auth_token", auth_token);
+    catch (e: any) {
+      throw new Error(e);
+    }
   },
 
   logout: () => {
-    localStorage.removeItem("auth_token");
+    localStorage.removeItem("authToken");
     return Promise.resolve();
   },
 
   checkAuth: () => {
-    return localStorage.getItem("auth_token")
-      ? Promise.resolve()
-      : Promise.reject();
+    return localStorage.getItem("authToken")? Promise.resolve() : Promise.reject();
   },
 
   checkError: (error) => {
     if (error.status === 401 || error.status === 403) {
-      localStorage.removeItem("auth_token");
+      localStorage.removeItem("authToken");
       return Promise.reject();
     }
     return Promise.resolve();
   },
 
-  getPermissions: () => Promise.resolve(), // Tu peux gérer les rôles ici
+  getPermissions: () => Promise.resolve(),
 };
 
 export default authProvider;

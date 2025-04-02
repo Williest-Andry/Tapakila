@@ -21,13 +21,14 @@ import UserEdit from './users/UserEdit';
 import UserList from './users/UserList';
 import UserShow from './users/UserShow';
 import authProvider from './authProvider';
+import LoginPage from './LoginPage';
 
 const CustomLayout = (props: { children: ReactNode }) => (
   <Layout {...props} className="custom-layout" />
 );
 
 const App = () => (
-  <Admin dataProvider={dataProvider} authProvider={authProvider} layout={CustomLayout} theme={radiantLightTheme} darkTheme={radiantDarkTheme}>
+  <Admin dataProvider={dataProvider} authProvider={authProvider} layout={CustomLayout} theme={radiantLightTheme} darkTheme={radiantDarkTheme} loginPage={LoginPage}>
     <Resource name="events" list={EventList} create={EventCreate} edit={EventEdit} show={EventShow} options={{ label: "Events" }} />
     <Resource name="users" list={UserList} create={UserCreate} edit={UserEdit}show={UserShow} />
     <Resource name="tickets" list={TicketList} create={TicketCreate} edit={TicketEdit} show={TicketShow} />
