@@ -16,7 +16,7 @@ const CustomLayout = (props: { children: ReactNode }) => (
 
 const App = () => (
   <Admin
-    dataProvider={mydataProvider}
+    dataProvider={dataProvider}
     layout={CustomLayout}
     theme={radiantLightTheme}
     darkTheme={radiantDarkTheme}
