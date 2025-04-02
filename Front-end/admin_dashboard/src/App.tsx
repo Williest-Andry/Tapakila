@@ -7,6 +7,19 @@ import dataProvider from './dataProvider';
 import EventCreate from './events/EventCreate';
 import EventEdit from './events/EventEdit';
 import EventList from './events/EventList';
+import EventShow from './events/EventShow';
+import ReservationCreate from './reservations/ReservationCreate';
+import ReservationEdit from './reservations/ReservationEdit';
+import ReservationList from './reservations/ReservationList';
+import ReservationShow from './reservations/ReservationShow';
+import TicketCreate from './tickets/TicketCreate';
+import TicketEdit from './tickets/TicketEdit';
+import TicketList from './tickets/TicketList';
+import TicketShow from './tickets/TicketShow';
+import UserCreate from './users/UserCreate';
+import UserEdit from './users/UserEdit';
+import UserList from './users/UserList';
+import UserShow from './users/UserShow';
 
 const CustomLayout = (props: { children: ReactNode }) => (
   <Layout {...props} className="custom-layout" />
