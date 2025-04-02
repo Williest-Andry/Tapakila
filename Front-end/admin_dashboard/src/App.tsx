@@ -8,7 +8,7 @@ import { Layout } from 'react-admin';
 import { ReactNode } from 'react';
 import './App.css';
 import UserList from './users/user-list';
-import mydataProvider from './data-provider';
+import mydataProvider from './dataProvider';
 
 const CustomLayout = (props: { children: ReactNode }) => (
   <Layout {...props} className="custom-layout" />
