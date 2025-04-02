@@ -1,5 +1,5 @@
 import { CreateParams, CreateResult, DataProvider, DeleteManyParams, DeleteManyResult, DeleteParams, DeleteResult, GetListParams, GetListResult, GetManyParams, GetManyReferenceParams, GetManyReferenceResult, GetManyResult, GetOneParams, GetOneResult, Identifier, QueryFunctionContext, RaRecord, UpdateManyParams, UpdateManyResult, UpdateParams, UpdateResult } from "react-admin";
-import userDataProvider from "./user/user-dataProvider";
+import userDataProvider from "./Users/user-dataProvider";
 
 const resourceDataProvider = {
     user: userDataProvider

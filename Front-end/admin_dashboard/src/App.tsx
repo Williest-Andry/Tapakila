@@ -7,7 +7,7 @@ import { dataProvider } from './Events/DataProvider';
 import { Layout } from 'react-admin';
 import { ReactNode } from 'react';
 import './App.css';
-import UserList from './user/user-list';
+import UserList from './Users/user-list';
 import mydataProvider from './data-provider';
 
 const CustomLayout = (props: { children: ReactNode }) => (
