@@ -1,14 +1,17 @@
-import { List, Datagrid, TextField, DateField, EditButton, DeleteButton } from 'react-admin';
+import { List, Datagrid, TextField, DateField, NumberField, ImageField } from "react-admin";
 
-export const EventList = () => (
+const EventList = () => (
   <List>
-    <Datagrid>
+    <Datagrid rowClick="edit">
       <TextField source="id" />
-      <TextField source="title" label="Titre" />
-      <DateField source="date" label="Date" />
-      <TextField source="status" label="Statut" />
-      <EditButton />
-      <DeleteButton />
+      <ImageField source="image" title="title" />
+      <TextField source="title" />
+      <DateField source="dateTime" showTime />
+      <TextField source="location" />
+      <TextField source="category" />
+      <NumberField source="availablePlace" />
     </Datagrid>
   </List>
 );
+
+export default EventList;

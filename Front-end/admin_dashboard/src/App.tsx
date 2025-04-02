@@ -1,13 +1,13 @@
 // App.tsx
 import { Admin, Resource, radiantLightTheme, radiantDarkTheme } from 'react-admin';
-import { EventList } from './Events/EventLists';
-import { EventCreate } from './Events/EventCreate';
-import { EventEdit } from './Events/EventUpdate';
-import { dataProvider } from './Events/DataProvider';
+import { EventList } from './events/EventLists';
+import { EventCreate } from './events/EventCreate';
+import { EventEdit } from './events/EventUpdate';
+import { dataProvider } from './events/DataProvider';
 import { Layout } from 'react-admin';
 import { ReactNode } from 'react';
 import './App.css';
-import UserList from './Users/user-list';
+import UserList from './users/user-list';
 import mydataProvider from './data-provider';
 
 const CustomLayout = (props: { children: ReactNode }) => (
