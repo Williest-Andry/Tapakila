@@ -3,7 +3,6 @@ import { Admin, Resource, radiantLightTheme, radiantDarkTheme } from 'react-admi
 import { Layout } from 'react-admin';
 import { ReactNode } from 'react';
 import './App.css';
-import UserList from './users/user-list';
 import dataProvider from './dataProvider';
 import EventCreate from './events/EventCreate';
 import EventEdit from './events/EventEdit';
