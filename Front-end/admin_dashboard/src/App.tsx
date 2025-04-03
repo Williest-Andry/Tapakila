@@ -1,5 +1,5 @@
 // App.tsx
-import { Admin, Resource, radiantLightTheme, radiantDarkTheme } from 'react-admin';
+import { Admin, Resource, radiantLightTheme, radiantDarkTheme, CustomRoutes } from 'react-admin';
 import { Layout } from 'react-admin';
 import { ReactNode } from 'react';
 import './App.css';
@@ -22,9 +22,12 @@ import UserList from './users/UserList';
 import UserShow from './users/UserShow';
 import authProvider from './authProvider';
 import LoginPage from './LoginPage';
+import MyProfile from './MyProfile';
+import { Route } from 'react-router-dom';
+import { CustomMenu } from './CustomMenu';
 
-const CustomLayout = (props: { children: ReactNode }) => (
-  <Layout {...props} className="custom-layout" />
+const CustomLayout = ({children}: { children?: ReactNode }) => (
+  <Layout menu={CustomMenu} className="custom-layout" >{children}</Layout>
 );
 
 const App = () => (
@@ -33,6 +36,9 @@ const App = () => (
     <Resource name="users" list={UserList} create={UserCreate} edit={UserEdit}show={UserShow} />
     <Resource name="tickets" list={TicketList} create={TicketCreate} edit={TicketEdit} show={TicketShow} />
     <Resource name="reservations" list={ReservationList} create={ReservationCreate} edit={ReservationEdit} show={ReservationShow} />
+    <CustomRoutes>
+      <Route path="/myprofile" element={<MyProfile />} />
+    </CustomRoutes>
   </Admin>
 );
 

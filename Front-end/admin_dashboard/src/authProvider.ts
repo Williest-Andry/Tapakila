@@ -5,7 +5,7 @@ const API_URL = "http://localhost:3001";
 const authProvider: AuthProvider = {
   login: async (params: any) => {
     const { email, password } = params;
-    const request = new Request(`${API_URL}/users/login`, {
+    const request = new Request(`${API_URL}/users/login/admins`, {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
@@ -17,8 +17,13 @@ const authProvider: AuthProvider = {
       if (!response.ok) {
         throw new Error("Invalid credentials");
       }
-      const finalResponse = await response.json();
+      const finalResponse = await response.json(); 
+      console.log(finalResponse.finalUser.authToken);
+           
       localStorage.setItem("authToken", finalResponse.finalUser.authToken);
+      localStorage.setItem('user', JSON.stringify( finalResponse.finalUser));
+      console.log("mety", localStorage.getItem("user"));
+      
       return Promise.resolve();
     }
     catch (e: any) {
@@ -28,18 +33,18 @@ const authProvider: AuthProvider = {
 
   logout: () => {
     localStorage.removeItem("authToken");
+    localStorage.removeItem("user");
     return Promise.resolve();
   },
-
+  
   checkAuth: () => {
     return localStorage.getItem("authToken")? Promise.resolve() : Promise.reject();
   },
-
+  
   checkError: (error) => {
     if (error.status === 401 || error.status === 403) {
-      console.log(localStorage.getItem("authToken"));
-      
       localStorage.removeItem("authToken");
+      localStorage.removeItem("user");
       return Promise.reject();
     }
     return Promise.resolve();
