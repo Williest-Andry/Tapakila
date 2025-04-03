@@ -1,4 +1,4 @@
-import { DataProvider, fetchUtils } from "react-admin";
+import { DataProvider, fetchUtils} from "react-admin";
 
 const apiUrl = "http://localhost:3001";
 const httpClient = (url: string, options = {}) => {
@@ -15,14 +15,14 @@ const dataProvider: DataProvider = {
     const options: fetchUtils.Options = {
       headers: new Headers({
         Accept: "application/json",
-        Authorization: `Bearer ${localStorage.getItem("authToken")? localStorage.getItem("authToken") : ""}`,
+        Authorization: `Bearer ${localStorage.getItem("authToken") ? localStorage.getItem("authToken") : ""}`,
       }),
     };
 
     const url = `${apiUrl}/${resource}?filter=%7B%7D&order=${order}&page=${page}&perPage=${perPage}&sort=${field}`;
-    
+
     const { json } = await httpClient(url, options);
-    const obj = (await fetchUtils.fetchJson(`${apiUrl}/${resource}`)).json
+    const obj = (await fetchUtils.fetchJson(`${apiUrl}/${resource}`)).json;
 
     return { data: json, total: obj.length };
   },
@@ -31,7 +31,7 @@ const dataProvider: DataProvider = {
     const options: fetchUtils.Options = {
       headers: new Headers({
         Accept: "application/json",
-        Authorization: `Bearer ${localStorage.getItem("authToken")? localStorage.getItem("authToken") : ""}`,
+        Authorization: `Bearer ${localStorage.getItem("authToken") ? localStorage.getItem("authToken") : ""}`,
       }),
     };
     const url = `${apiUrl}/${resource}/${params.id}`;
@@ -40,9 +40,9 @@ const dataProvider: DataProvider = {
   },
 
   create: async (resource, params) => {
-    if(resource == 'users'){
-      
-      const {json} = await httpClient(`${apiUrl}/users/admins`, {
+    if (resource == 'users') {
+
+      const { json } = await httpClient(`${apiUrl}/users/admins`, {
         method: "POST",
         body: JSON.stringify(params.data),
       });
@@ -59,7 +59,7 @@ const dataProvider: DataProvider = {
   update: async (resource, params) => {
     const requestHeaders = new Headers({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem("authToken")? localStorage.getItem("authToken") : ""}`,
+      'Authorization': `Bearer ${localStorage.getItem("authToken") ? localStorage.getItem("authToken") : ""}`,
     });
     params.data.id = params.id;
     const { json } = await httpClient(`${apiUrl}/${resource}/${params.id}`, {
@@ -73,14 +73,14 @@ const dataProvider: DataProvider = {
   delete: async (resource, params) => {
     const requestHeaders = new Headers({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem("authToken")? localStorage.getItem("authToken") : ""}`,
+      'Authorization': `Bearer ${localStorage.getItem("authToken") ? localStorage.getItem("authToken") : ""}`,
     });
     await httpClient(`${apiUrl}/${resource}/${params.id}`, {
       method: "DELETE",
       headers: requestHeaders
     });
-    return { data: params.previousData };
-  },
+    return { data: params.meta };
+  }
 };
 
 export default dataProvider;
