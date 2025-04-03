@@ -38,16 +38,27 @@ const dataProvider: DataProvider = {
   },
 
   update: async (resource, params) => {
+    const requestHeaders = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem("authToken")? localStorage.getItem("authToken") : ""}`,
+    });
+    params.data.id = params.id;
     const { json } = await httpClient(`${apiUrl}/${resource}/${params.id}`, {
       method: "PUT",
       body: JSON.stringify(params.data),
+      headers: requestHeaders
     });
     return { data: json };
   },
 
   delete: async (resource, params) => {
+    const requestHeaders = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem("authToken")? localStorage.getItem("authToken") : ""}`,
+    });
     await httpClient(`${apiUrl}/${resource}/${params.id}`, {
       method: "DELETE",
+      headers: requestHeaders
     });
     return { data: params.previousData };
   },
