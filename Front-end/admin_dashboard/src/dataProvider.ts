@@ -30,6 +30,15 @@ const dataProvider: DataProvider = {
   },
 
   create: async (resource, params) => {
+    if(resource == 'users'){
+      
+      const {json} = await httpClient(`${apiUrl}/users/admins`, {
+        method: "POST",
+        body: JSON.stringify(params.data),
+      });
+
+      return { data: json.finalCreatedUser };
+    }
     const { json } = await httpClient(`${apiUrl}/${resource}`, {
       method: "POST",
       body: JSON.stringify(params.data),
