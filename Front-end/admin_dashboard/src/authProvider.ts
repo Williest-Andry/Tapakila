@@ -37,6 +37,8 @@ const authProvider: AuthProvider = {
 
   checkError: (error) => {
     if (error.status === 401 || error.status === 403) {
+      console.log(localStorage.getItem("authToken"));
+      
       localStorage.removeItem("authToken");
       return Promise.reject();
     }
